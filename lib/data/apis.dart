@@ -61,12 +61,14 @@ class Apis {
     }
   }
 
-  static Future<ApiResponse<Product?, ErrorResponse>> fetchProduct(String code) async {
+  static Future<ApiResponse<Product?, ErrorResponse>> fetchProduct(
+      String code) async {
     String url = '$mainUrl/INVENTARIO/PRODUTO?'
         'CODPRODUTO=$code';
 
     try {
-      Response response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 5));
+      Response response =
+          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 5));
 
       if (response.statusCode == 200) {
         return ApiResponse(
@@ -131,7 +133,8 @@ class Apis {
       } else if (response.statusCode == 409) {
         return ApiResponse(
           hasError: true,
-          error: ErrorResponse.fromJson(json.decode(response.body))..alreadyHave = true,
+          error: ErrorResponse.fromJson(json.decode(response.body))
+            ..alreadyHave = true,
         );
       } else {
         return ApiResponse(
@@ -158,12 +161,14 @@ class Apis {
     }
   }
 
-  static Future<ApiResponse<Collects?, ErrorResponse>> fetchCollects({required String address}) async {
+  static Future<ApiResponse<Collects?, ErrorResponse>> fetchCollects(
+      {required String address}) async {
     String url = '$mainUrl/INVENTARIO/LOJA?'
         'ENDERECO=$address';
 
     try {
-      Response response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 5));
+      Response response =
+          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 5));
 
       if (response.statusCode == 200) {
         return ApiResponse(
@@ -187,12 +192,14 @@ class Apis {
     }
   }
 
-  static Future<ApiResponse<bool?, ErrorResponse>> deleteCollects({required String id}) async {
+  static Future<ApiResponse<bool?, ErrorResponse>> deleteCollects(
+      {required String id}) async {
     String url = '$mainUrl/INVENTARIO/LOJA?'
         'ID_LANCTOS=$id';
 
     try {
-      Response response = await http.delete(Uri.parse(url)).timeout(const Duration(seconds: 5));
+      Response response =
+          await http.delete(Uri.parse(url)).timeout(const Duration(seconds: 5));
 
       if (response.statusCode == 200) {
         return ApiResponse(
